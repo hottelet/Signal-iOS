@@ -86,7 +86,7 @@ typedef NS_ENUM(NSInteger, PrivacySettingsTableViewControllerSectionIndex) {
     self.enableCallKitPrivacyCell.accessoryView = self.enableCallKitPrivacySwitch;
 
     // Enable Screen Security Cell
-    self.enableScreenSecurityCell                = [[UITableViewCell alloc] init];
+    self.enableScreenSecurityCell = [UITableViewCell new];
     self.enableScreenSecurityCell.textLabel.text = NSLocalizedString(@"SETTINGS_SCREEN_SECURITY", @"");
     self.enableScreenSecuritySwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
     self.enableScreenSecurityCell.accessoryView          = self.enableScreenSecuritySwitch;
