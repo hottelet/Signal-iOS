@@ -1081,6 +1081,7 @@ typedef enum : NSUInteger {
     // This method gets called multiple times, so it's important we re-layout the unread badge
     // with respect to the new backItem.
     [backItem.customView addSubview:_backButtonUnreadCountView];
+    // TODO:
     [_backButtonUnreadCountView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:-6];
     [_backButtonUnreadCountView autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:1];
     [_backButtonUnreadCountView autoSetDimension:ALDimensionHeight toSize:unreadCountViewDiameter];
@@ -1099,7 +1100,7 @@ typedef enum : NSUInteger {
 
     const CGFloat kTitleVSpacing = 0.f;
     if (!self.navigationBarTitleView) {
-        self.navigationBarTitleView = [UIView new];
+        self.navigationBarTitleView = [UIView containerView];
         [self.navigationBarTitleView
             addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
                                                                          action:@selector(navigationTitleTapped:)]];
@@ -1163,7 +1164,9 @@ typedef enum : NSUInteger {
             + kTitleVSpacing);
     self.navigationBarTitleLabel.frame
         = CGRectMake(0, 0, titleViewWidth, self.navigationBarTitleLabel.frame.size.height);
-    self.navigationBarSubtitleLabel.frame = CGRectMake(0,
+    self.navigationBarSubtitleLabel.frame = CGRectMake((self.view.isRTL ? self.navigationBarTitleView.frame.size.width
+                                                                   - self.navigationBarSubtitleLabel.frame.size.width
+                                                                        : 0),
         self.navigationBarTitleView.frame.size.height - self.navigationBarSubtitleLabel.frame.size.height,
         titleViewWidth,
         self.navigationBarSubtitleLabel.frame.size.height);
